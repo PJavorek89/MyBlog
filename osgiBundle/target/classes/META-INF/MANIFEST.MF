@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1636034241727
+Build-Jdk: 1.8.0-262
+Built-By: javorek2
+Bundle-Description: node + resources
+Bundle-ManifestVersion: 2
+Bundle-Name: myBlog
+Bundle-SymbolicName: blog.javorek.myBlog
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Sling-Initial-Content: SLING-INF/scripts;overwrite:=true;uninstall:=true
+ ;path:=/apps,SLING-INF/content;overwrite:=true;uninstall:=true;path:=/c
+ ontent;
+Tool: Bnd-3.0.0.201509101326

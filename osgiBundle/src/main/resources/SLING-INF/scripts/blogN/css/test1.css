@@ -1,0 +1,47 @@
+.containerPicture {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.container_an_text_obecne {
+	flex-direction: column;
+	justify-content: center;
+
+}
+
+.containerVytvorBlog1 {
+	display: flex;
+	flex-direction: column;
+
+}
+
+.wrapper1 {
+	width: 80%;
+}
+
+.vycentruj {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.zarovnejNaKonceStranky {
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.box {
+	position: absolute;
+	border: 0;
+	margin-right: 5.5px;
+	margin-left: 5.5px;
+	margin-bottom: 5.5px;
+	margin-top: 5.5px;
+}
+
+.vycentrujTlacitka {
+	display: flex;
+	flex: 2;
+
+}
