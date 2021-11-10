@@ -175,7 +175,7 @@ import="org.apache.sling.api.request.ResponseUtil"
         <div>
           <form method="POST" action="/content/MyBlog/uprav_blog">
             <input type="hidden" name="_charset_" value="UTF-8" />
-            <input type="hidden" name=":redirect" value="/content/MyBlog/uprav_blog">
+            <input type="hidden" name=":redirect" value="/content/MyBlog/uprav_blog.html">
             <input type="submit" value="uprav">
             <!-- preposlani vsech potrebnych property -->
             <input type="hidden" name="presmerovanoZ" value="<%= title %>">
@@ -187,6 +187,7 @@ import="org.apache.sling.api.request.ResponseUtil"
             <input type="hidden" name="puvodniSablona" value="<%= puvodniSablona %>">
             <input type="hidden" name="puvodniTypPisma" value="<%= puvodniTypPisma %>">
             <input type="hidden" name="puvodniObrazek" value="<%= obr %>">
+            <input type="hidden" name="puvodniPath" value="<%= currentNode.getPath() %>">
 
             <input type="hidden" name="datumVytvoreniPuvodniStranky" value="<%= datumFormat %>">
           </form>
@@ -194,7 +195,7 @@ import="org.apache.sling.api.request.ResponseUtil"
          
         <!-- form pro smazaní blogu -->
         <div>
-          <form method="POST" action="/content/MyBlog/main/<%= title %>">
+          <form method="POST" action="/content/MyBlog/main/<%= currentNode.getName() %>">
             <input type="submit" value="Delete" />
             <input type="hidden" name=":redirect" value="/content/MyBlog/main.html?t=<%= timeStamp %>">
             <input type="hidden" name=":operation" value="delete" />
@@ -211,7 +212,7 @@ import="org.apache.sling.api.request.ResponseUtil"
                         <legend >Obecné</legend>
          <% out.println("Blog s názvem " + nazev + " ohledně " + body + " má URL adresu: " + url + " a byl vytvořen: " + datumFormat);  %>
        </div>
-       <div><a href="/MyBlog/main.html">Odkaz na hlavní stránku</a></div>
+       <div><a href="/content/MyBlog/main.html">Odkaz na hlavní stránku</a></div>
    </div>
    <!-- je treba zavolat session curent node a pote ulozit -->
    <% currentNode.getSession().save(); %>

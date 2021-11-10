@@ -110,7 +110,7 @@ import="org.apache.sling.api.request.ResponseUtil"
 
 	    <%-- prevedeni datumu --%>
 	      <%
-	      String datumFormat = datum.substring(11, 16) +" "+ datum.substring(8, 10) + "." + datum.substring(5, 7) + " " + datum.substring(0, 4); 
+	      String datumFormat = datum.substring(11, 16) +" "+ datum.substring(8, 10) + "." + datum.substring(5, 7) + ".  " + datum.substring(0, 4); 
 	      %>
 	<meta charset="utf-8">
 	<title></title>
@@ -181,7 +181,7 @@ import="org.apache.sling.api.request.ResponseUtil"
 	          </form>
 	        </div>
 	</div>        	
-	<div>Vytvořeno: <%= currentNode.getProperty("jcr:created").getString() %> </div>
+	<div>Vytvořeno: <%= datumFormat %> </div>
 	<div style="font-size: 60%"><a href="/content/MyBlog/main.html">Odkaz na hlavní stránku</a></div>
 </body>
 </html>

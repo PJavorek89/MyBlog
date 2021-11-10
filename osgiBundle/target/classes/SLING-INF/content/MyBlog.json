@@ -5,15 +5,15 @@
     "sling:resourceType": "blogN/main"
   },
   "uprav_blog": {
-    "body": "test-tlacitka",
-    "datumVytvoreniPuvodniStranky": "15:33 21.10 2021",
+    "body": "",
+    "datumVytvoreniPuvodniStranky": "",
     "jcr:primaryType": "sling:OrderedFolder",
-    "nazev": "test",
-    "presmerovanoZ": "test",
-    "puvodniURLStranky": "http://localhost:8080/MyBlog/main/test.html",
+    "nazev": "",
+    "presmerovanoZ": "",
+    "puvodniURLStranky": "",
     "sling:resourceType": "blogN/uprav_blog",
     "textPole": "text blogu",
-    "title": "test"
+    "title": ""
   },
   "vytvor_blog": {
     "jcr:primaryType": "sling:OrderedFolder",

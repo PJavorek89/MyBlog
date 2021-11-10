@@ -48,7 +48,7 @@ import="org.apache.sling.api.request.ResponseUtil"
 				%> <br> <%
 				out.println("Odkaz na blog "); %> <a href="<%= n.getProperty("url").getString() %>"> <%= n.getProperty("title").getString() %> </a>
 				<br>
-				<form method="post" action="/MyBlog/Uprav_blog.html">
+				<form method="post" action="/content/MyBlog/uprav_blog">
 					<!-- <input type="hidden" name="presmerovanoZ" value="<% n.getProperty("title").getString(); %>"> -->
 			         <input type="hidden" name="_charset_" value="UTF-8" />
 			         <input type="hidden" name=":redirect" value="/content/MyBlog/uprav_blog.html">
@@ -58,7 +58,7 @@ import="org.apache.sling.api.request.ResponseUtil"
 			         <input type="hidden" name="body" value="<%= n.getProperty("body").getString() %>">
 			         <input type="hidden" name="puvodniURLStranky" value="<%= n.getProperty("url").getString() %>">
 				</form>
-				<form method="POST" action="/MyBlog/main/<%=n.getProperty("title").getString()%>">
+				<form method="POST" action="/content/MyBlog/main/<%=n.getName()%>">
             		<input type="submit" value="Delete" >
             		<input type="hidden" name=":operation" value="delete" >
             		<input type="hidden" name=":redirect" value="/content/MyBlog/main.html?t=<%= timeStamp %>">

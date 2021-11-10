@@ -8,7 +8,7 @@ import="org.apache.sling.api.request.ResponseUtil"
 <%@page import="java.io.File"%>
 <%@page import="java.util.Scanner"%>
 <%@page import="javax.jcr.Node"%>
-<%@page import = "java.io.*,java.util.*, java.text.SimpleDateFormat, java.time.LocalDateTime, java.time.format.*" %>
+<%@page import="java.io.*,java.util.*, java.text.SimpleDateFormat, java.time.LocalDateTime, java.time.format.*" %>
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/apps/blogN/css/test1.css">
@@ -21,17 +21,39 @@ import="org.apache.sling.api.request.ResponseUtil"
 
 
   <!--hodnoty zaslane z upravovane stranky -->
-<%
-  String upravovanaStrankaURL = currentNode.getProperty("puvodniURLStranky").getString();
-  
+  <%
+  String upravovanaStrankaURL = "";  
   String prazdne = "";
   String body = "";
   String textPole = "";
-  String nazev = currentNode.getProperty("nazev").getString();
-  String puvodniObrazek= currentNode.getProperty("puvodniObrazek").getString();
+  String nazev = "";
+  String puvodniObrazek = "";
+  String puvodniTypPisma = "";
+  String puvodniSablona = "";
+  String odkazZpet ="";
 
 %>
-      <%= upravovanaStrankaURL %> 
+
+  <!-- je nunte try&catch pro odchyceni problemu pro prvni spusteni na slingu-->
+<%
+    try{
+      upravovanaStrankaURL = currentNode.getProperty("puvodniURLStranky").getString();
+      nazev = currentNode.getProperty("nazev").getString();
+      odkazZpet =  currentNode.getProperty("puvodniPath").getString();
+    }
+    catch(Exception e){
+      currentNode.setProperty("puvodniObrazek", "none");
+      currentNode.setProperty("puvodniURLStranky", "none"); //nastavit none
+      upravovanaStrankaURL = currentNode.getProperty("puvodniURLStranky").getString();
+      currentNode.setProperty("nazev", "none"); //nastavit none
+      nazev = currentNode.getProperty("nazev").getString();
+      currentNode.setProperty("puvodniPath", "none");
+      odkazZpet =  currentNode.getProperty("puvodniPath").getString();
+
+
+
+    }
+%>
 
 
 
@@ -71,8 +93,17 @@ import="org.apache.sling.api.request.ResponseUtil"
         //Pote pomoci switch prepinace (int pomVar)bude do dane nezname prirazen String checked, tato neznama bude pomoci JSP expresion tagu zobrazena v inputu
         --%>
        
-      <%  
-        String puvodniSablona = currentNode.getProperty("puvodniSablona").getString();
+      <%
+
+        try{
+          puvodniSablona = currentNode.getProperty("puvodniSablona").getString();
+        }
+        catch(Exception e){
+          currentNode.setProperty("puvodniSablona", "blogN/standart");
+          puvodniSablona = currentNode.getProperty("puvodniSablona").getString();
+        }
+
+        
         int poradiResource;
         String resourceStandart = "";
         String resourceNonStandart = "";
@@ -100,7 +131,13 @@ import="org.apache.sling.api.request.ResponseUtil"
 
       <%-- checked zaslaneho vyberu u  puvodniho stylu pisma --%>
       <%  
-        String puvodniTypPisma = currentNode.getProperty("puvodniTypPisma").getString();
+        try{
+          puvodniTypPisma = currentNode.getProperty("puvodniTypPisma").getString();
+        }
+        catch(Exception e){
+          currentNode.setProperty("puvodniTypPisma", "none");
+          puvodniTypPisma = currentNode.getProperty("puvodniTypPisma").getString();
+        }
         int poradiTypPisma;
         String italicResource = "";
         String boldResource = "";
@@ -144,6 +181,13 @@ import="org.apache.sling.api.request.ResponseUtil"
       %>
       <%-- checked zaslaneho vyberu u  puvodniho stylu pisma --%>
       <%  
+        try{
+          puvodniObrazek = currentNode.getProperty("puvodniObrazek").getString();
+        }
+        catch(Exception e){
+          currentNode.setProperty("puvodniObrazek", "none");
+          puvodniObrazek = currentNode.getProperty("puvodniObrazek").getString();
+        }
         
         int poradiObrazek;
         String obrazekLogo = "";
@@ -255,6 +299,12 @@ import="org.apache.sling.api.request.ResponseUtil"
       <br>
        <div>
       </div>
+      <div class="vycentrujTlacitka">
+      <input type="submit" name="submit" value="Ulož změny">
+      <input type="hidden" name=":redirect" value="<%= odkazZpet %>.html">
+      <input type="hidden" name="noveZalozeno" value="FALSE">
+      <input type="reset" value="vymaž změny">
+      </div>
 </form>
     </table>
   </div>
@@ -263,9 +313,7 @@ import="org.apache.sling.api.request.ResponseUtil"
   <br>
   <br>
   <br>     
-  <input type="submit" name="submit" value="Ulož změny">
-  <input type="hidden" name=":redirect" value="<%= upravovanaStrankaURL %>">
-  <input type="hidden" name="noveZalozeno" value="FALSE">
+  
   <!-- preposlani property zpet na puvodnni nod -->
   
   <!-- to do: je mozno odstranit?
