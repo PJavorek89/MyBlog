@@ -110,7 +110,8 @@ import="org.apache.sling.api.request.ResponseUtil"
 
 	    <%-- prevedeni datumu --%>
 	      <%
-	      String datumFormat = datum.substring(11, 16) +" "+ datum.substring(8, 10) + "." + datum.substring(5, 7) + ".  " + datum.substring(0, 4); 
+	      String datumFormat = datum.substring(11, 16) +" "+ datum.substring(8, 10) + "." + datum.substring(5, 7) + ".  " + datum.substring(0, 4);
+	      currentNode.setProperty("datumVytvoreni", datumFormat); 
 	      %>
 	<meta charset="utf-8">
 	<title></title>
@@ -166,12 +167,13 @@ import="org.apache.sling.api.request.ResponseUtil"
 	            <input type="hidden" name="datumVytvoreniPuvodniStranky" value="<%= datumFormat %>">
 	            <input type="hidden" name="puvodniSablona" value="<%= puvodniSablona %>">
 	            <input type="hidden" name="puvodniTypPisma" value="<%= puvodniTypPisma %>">
-            <input type="hidden" name="puvodniObrazek" value="<%= obr %>">
+             <input type="hidden" name="puvodniObrazek" value="<%= obr %>">
+             <input type="hidden" name="puvodniPath" value="<%= currentNode.getPath() %>">
 	          </form>
 	         </div>
 		<!-- form pro smazaní blogu -->
 	        <div>
-	          <form method="POST" action="/content/MyBlog/main/<%= title %>">
+	          <form method="POST" action="/content/MyBlog/main/<%= currentNode.getName() %>">
 	            <input type="submit" value="Delete" />
 	            <input type="hidden" name=":redirect" value="/content/MyBlog/main.html?t=<%= timeStamp %>">
 	            <input type="hidden" name=":operation" value="delete" />

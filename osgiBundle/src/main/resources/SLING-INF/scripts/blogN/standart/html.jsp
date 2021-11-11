@@ -82,7 +82,8 @@ import="org.apache.sling.api.request.ResponseUtil"
 
       <%-- prevedeni datumu --%>
         <%
-        String datumFormat = datum.substring(11, 16) +" "+ datum.substring(8, 10) + "." + datum.substring(5, 7) + " " + datum.substring(0, 4); 
+        String datumFormat = datum.substring(11, 16) +" "+ datum.substring(8, 10) + "." + datum.substring(5, 7) + " " + datum.substring(0, 4);
+        currentNode.setProperty("datumVytvoreni", datumFormat); 
         %>
 
       <%--vypsani priznaku jestli stranka prosla zmenou --%>

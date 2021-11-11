@@ -57,6 +57,13 @@ import="org.apache.sling.api.request.ResponseUtil"
 			         <input type="hidden" name="title" value="<%= n.getProperty("title").getString() %>">
 			         <input type="hidden" name="body" value="<%= n.getProperty("body").getString() %>">
 			         <input type="hidden" name="puvodniURLStranky" value="<%= n.getProperty("url").getString() %>">
+			         <input type="hidden" name="presmerovanoZ" value="<%= n.getProperty("title").getString() %>">
+			         <input type="hidden" name="nazev" value="<%= n.getProperty("nazev").getString() %>">
+			         <input type="hidden" name="puvodniSablona" value="<%= n.getProperty("sling:resourceType").getString() %>">
+			         <input type="hidden" name="puvodniTypPisma" value="<%= n.getProperty("style").getString() %>">
+			         <input type="hidden" name="puvodniObrazek" value="<%= n.getProperty("obr").getString() %>">
+			         <input type="hidden" name="puvodniPath" value="<%= n.getPath() %>">
+			         <input type="hidden" name="datumVytvoreniPuvodniStranky" value="<%= n.getProperty("datumVytvoreni").getString() %>">
 				</form>
 				<form method="POST" action="/content/MyBlog/main/<%=n.getName()%>">
             		<input type="submit" value="Delete" >

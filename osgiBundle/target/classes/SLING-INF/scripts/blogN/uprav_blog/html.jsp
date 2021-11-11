@@ -22,38 +22,21 @@ import="org.apache.sling.api.request.ResponseUtil"
 
   <!--hodnoty zaslane z upravovane stranky -->
   <%
-  String upravovanaStrankaURL = "";  
+  String upravovanaStrankaURL = currentNode.getProperty("puvodniURLStranky").getString();  
   String prazdne = "";
   String body = "";
   String textPole = "";
-  String nazev = "";
+  String nazev = currentNode.getProperty("nazev").getString();;
   String puvodniObrazek = "";
   String puvodniTypPisma = "";
   String puvodniSablona = "";
-  String odkazZpet ="";
+  String odkazZpet =  currentNode.getProperty("puvodniPath").getString();
 
 %>
+
 
   <!-- je nunte try&catch pro odchyceni problemu pro prvni spusteni na slingu-->
-<%
-    try{
-      upravovanaStrankaURL = currentNode.getProperty("puvodniURLStranky").getString();
-      nazev = currentNode.getProperty("nazev").getString();
-      odkazZpet =  currentNode.getProperty("puvodniPath").getString();
-    }
-    catch(Exception e){
-      currentNode.setProperty("puvodniObrazek", "none");
-      currentNode.setProperty("puvodniURLStranky", "none"); //nastavit none
-      upravovanaStrankaURL = currentNode.getProperty("puvodniURLStranky").getString();
-      currentNode.setProperty("nazev", "none"); //nastavit none
-      nazev = currentNode.getProperty("nazev").getString();
-      currentNode.setProperty("puvodniPath", "none");
-      odkazZpet =  currentNode.getProperty("puvodniPath").getString();
 
-
-
-    }
-%>
 
 
 
@@ -301,6 +284,7 @@ import="org.apache.sling.api.request.ResponseUtil"
       </div>
       <div class="vycentrujTlacitka">
       <input type="submit" name="submit" value="Ulož změny">
+      <input type="hidden" name="title" value="<%= currentNode.getProperty("title").getString()%>">
       <input type="hidden" name=":redirect" value="<%= odkazZpet %>.html">
       <input type="hidden" name="noveZalozeno" value="FALSE">
       <input type="reset" value="vymaž změny">
